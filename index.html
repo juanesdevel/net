@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Juanes - Portafolio</title>
- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-     <link
+    <link rel="stylesheet" href="Bootstrap_4/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
@@ -14,12 +15,24 @@
       footer,
       main {
         background-color: black; /* Establecer el color de fondo a negro */
-        background-image: url("fondo3.jpg"); /* Ruta a tu imagen de fondo */
+        background-image: url("img/fondo3.jpg"); /* Ruta a tu imagen de fondo */
         background-size: cover; /* Ajustar la imagen para cubrir todo el fondo */
         background-position: center; /* Centrar la imagen */
         background-repeat: no-repeat; /* Evitar que la imagen se repita */
         color: white; /* Establecer el color del texto a blanco */
-      }
+              }
+
+              .contenedor {
+    overflow: hidden;
+}
+
+.imagen {
+    transition: transform 0.3s ease;
+}
+
+.imagen:hover {
+    transform: scale(1.2);
+}
     </style>
   </head>
   <body>
@@ -75,7 +88,11 @@
             </h5>
           </div>
           <div class="col-lg-3">
-            <img src="foto2.png" alt="" style="width: 80%; height: Auto" />
+            <div class="contenedor">
+                <img src="img/foto2.png" alt="Imagen" class="imagen" id="imagen" style="width: 80%; height: Auto" />
+            </div>
+            
+            
           </div>
         </div>
       </div>
@@ -125,3 +142,17 @@
   </body>
   <div class="container-fluid"></div>
 </html>
+<script>const imagen = document.getElementById('imagen');
+    imagen.addEventListener('mousemove', zoomIn);
+    
+    function zoomIn(event) {
+        const rect = imagen.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const deltaX = (centerX - x) / centerX;
+        const deltaY = (centerY - y) / centerY;
+        imagen.style.transformOrigin = `${50 + deltaX * 10}% ${50 + deltaY * 10}%`;
+    }
+    </script>
